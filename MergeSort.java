@@ -3,9 +3,10 @@ import java.util.*;
 import javax.swing.JOptionPane;
 import java.util.Arrays;
 
-public class hwOne {
+public class MergeSort {
+	
 	private static final int SENTINEL = 0;
-
+	//Insertion Sort
 	public static void insertionSort(int A[])
 	{
 		Integer key =0;
@@ -22,12 +23,26 @@ public class hwOne {
 			A[i+1] = key;
 		}
 	}
+	
+	//Merge Sort
+	public static void mergeSort(int A[],int p, int r)
+	{
+		if(p < r)
+		{
+			int q = (p+r)/2;
+			mergeSort(A,p,q);
+			mergeSort(A,q+1,r);
+			sort(A,p,q,r);		
+		}
+	}
 	public static void sort(int[] A,int p, int q, int r)
 	{
 		int n1 = q - p + 1;
 		int n2 = r - q ;
+		
 		int[] L = new int[n1+1];
 		int[] R = new int[n2+1];
+		
 		int i=0;
 		int j=0;
 		for(i=0; i < n1;i++)
@@ -43,6 +58,7 @@ public class hwOne {
 		i=0;
 		j=0;
 		int k = p;
+		
 		while(i < n1 && j < n2)
 		{
 			if(L[i] <= R[j])
@@ -72,17 +88,6 @@ public class hwOne {
 			k++;
 		}
 		
-	}
-	
-	public static void mergeSort(int A[],int p, int r)
-	{
-		if(p < r)
-		{
-			int q = (p+r)/2;
-			mergeSort(A,p,q);
-			mergeSort(A,q+1,r);
-			sort(A,p,q,r);		
-		}
 	}
 	
 	public static void printAll(int A[])
